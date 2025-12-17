@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="slider-container">
+    <h2>Image Slider</h2>
+
+    <div class="slider">
+        {% for img in images %}
+            <img src="/static/images/{{ img }}" class="slide">
+        {% endfor %}
+    </div>
+
+    <button onclick="prevSlide()" class="nav-btn">⟨ Prev</button>
+    <button onclick="nextSlide()" class="nav-btn">Next ⟩</button>
+</div>
+
+<script>
+let slideIndex = 0;
+const slides = document.getElementsByClassName("slide");
+
+// Show first slide
+showSlide(slideIndex);
+
+function showSlide(index) {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[index].style.display = "block";
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+    showSlide(slideIndex);
+}
+</script>
+
+</body>
+</html>
