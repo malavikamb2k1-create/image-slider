@@ -11,7 +11,7 @@
 
     <div class="slider">
         {% for img in images %}
-            <img src="{{ url_for('static', filename='images/' + img) }}" class="slide">
+            <img src="{{ url_for('static', filename='images/' ~ img) }}" class="slide">
         {% endfor %}
     </div>
 
@@ -22,9 +22,6 @@
 <script>
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
-
-// Show first slide
-showSlide(slideIndex);
 
 function showSlide(index) {
     for (let i = 0; i < slides.length; i++) {
@@ -42,6 +39,8 @@ function prevSlide() {
     slideIndex = (slideIndex - 1 + slides.length) % slides.length;
     showSlide(slideIndex);
 }
+
+showSlide(slideIndex);
 </script>
 
 </body>
